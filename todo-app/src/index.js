@@ -1,15 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-// import App from './App';
 import ToDoApp from "./ToDoApp";
 import reportWebVitals from "./reportWebVitals";
 
+const TODOS = [
+  { id: 0, title: "メモ0", contents: "メモ0\rテスト0" },
+  { id: 1, title: "メモ1", contents: "メモ1\rテスト1" },
+  { id: 2, title: "メモ2", contents: "メモ2\rテスト2" },
+];
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    {/* <App /> */}
-    <ToDoApp />
+    <ToDoApp todos={TODOS}/>
   </React.StrictMode>
 );
 

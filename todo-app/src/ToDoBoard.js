@@ -1,15 +1,18 @@
+import React from "react";
 import "./ToDo.css";
 import ToDoTable from "./ToDoTable";
 
-function ToDoBoard() {
-  return (
-    <div className="ToDoBoard">
-      <h1>一覧</h1>
-      <div className="Board">
-        <ToDoTable />
+class ToDoBoard extends React.Component {
+  render() {
+    return (
+      <div className="ToDoBoard">
+        <h1>一覧</h1>
+        <div className="Board">
+          <ToDoTable todos={this.props.todos}/>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default ToDoBoard;
