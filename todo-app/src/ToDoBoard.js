@@ -1,10 +1,13 @@
-import './ToDo.css';
+import "./ToDo.css";
+import ToDoTable from "./ToDoTable";
 
 function ToDoBoard() {
   return (
     <div className="ToDoBoard">
-      一覧
-      <div className="ToDoTable"></div>
+      <h1>一覧</h1>
+      <div className="Board">
+        <ToDoTable />
+      </div>
     </div>
   );
 }
