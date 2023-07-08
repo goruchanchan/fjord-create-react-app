@@ -2,6 +2,7 @@ import React from "react";
 import "./ToDo.css";
 import ToDoTable from "./ToDoTable";
 import EditToDo from "./EditToDo";
+import AddToDo from "./AddToDo";
 
 class EditingBoard extends React.Component {
   render() {
@@ -11,10 +12,14 @@ class EditingBoard extends React.Component {
         <div className="Board">
           <div className="Wrapper">
             <section className="Left">
-              <ToDoTable todos={this.props.todos} />
+              <ToDoTable todos={this.props.todoItems} />
             </section>
             <section className="Right">
-              <EditToDo todo={this.props.todos[0]}/>
+              {/* <EditToDo todo={this.props.todos[0]}/> */}
+              <AddToDo
+                onAddNewToDo={this.props.onAddNewToDo}
+                maxId={this.props.maxId}
+              />
             </section>
           </div>
         </div>

@@ -7,7 +7,7 @@ class ToDoTable extends React.Component {
       <div className="ToDoTable">
         <ul>
           {this.props.todos.map((todo) => (
-            <li key={todo.id}>{todo.title}</li>
+            <li key={todo.id}>{todo.text}</li>
           ))}
         </ul>
       </div>

@@ -4,6 +4,29 @@ import EditingBoard from "./EditingBoard";
 import "./ToDo.css";
 
 class ToDoApp extends React.Component {
+  constructor(props) {
+    super(props);
+    const tempLocalStorageToDoItems = localStorage.getItem("todoItems");
+
+    if (tempLocalStorageToDoItems === null) {
+      this.state = { todoItems: [], maxId: 0 };
+    } else {
+      this.state = {
+        todoItems: JSON.parse(tempLocalStorageToDoItems),
+        maxId: Number(localStorage.getItem("maxId")),
+      };
+    }
+    this.handleAddNewToDo = this.handleAddNewToDo.bind(this);
+  }
+
+  handleAddNewToDo(newToDo) {
+    const todoItems = [...this.state.todoItems, newToDo];
+    const maxId = Number(newToDo.id) + 1;
+    this.setState({ todoItems, maxId });
+    localStorage.setItem("todoItems", JSON.stringify(todoItems));
+    localStorage.setItem("maxId", maxId);
+  }
+
   render() {
     return (
       <div className="ToDoApp">
@@ -22,10 +45,14 @@ class ToDoApp extends React.Component {
           </a> */}
         </header>
         <div className="Contents">
-          <ToDoBoard todos={this.props.todos} />
+          <ToDoBoard todos={this.state.todoItems} />
         </div>
         <div className="Contents">
-          <EditingBoard todos={this.props.todos} />
+          <EditingBoard
+            onAddNewToDo={this.handleAddNewToDo}
+            todoItems={this.state.todoItems}
+            maxId={this.state.maxId}
+          />
         </div>
       </div>
     );
