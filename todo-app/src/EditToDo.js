@@ -15,7 +15,6 @@ class EditToDo extends React.Component {
   }
 
   handleEditButton() {
-    console.log(this.state.todo);
     if (this.state.todo.text === "") return;
     this.props.onEditToDo(this.state.todo);
   }
@@ -32,7 +31,7 @@ class EditToDo extends React.Component {
           </section>
           <section className="Down">
             <button onClick={this.handleEditButton}>確定</button>
-            <button>削除</button>
+            <button onClick={this.props.onDeleteToDo}>削除</button>
           </section>
         </div>
       </div>

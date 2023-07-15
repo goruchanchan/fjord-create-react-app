@@ -23,6 +23,7 @@ class EditingBoard extends React.Component {
                 <EditToDo
                   todo={this.props.selectedTodo}
                   onEditToDo={this.props.onEditToDo}
+                  onDeleteToDo={this.props.onDeleteToDo}
                 />
               ) : (
                 <AddToDo

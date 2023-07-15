@@ -19,6 +19,7 @@ class ToDoApp extends React.Component {
     }
     this.handleAddNewToDo = this.handleAddNewToDo.bind(this);
     this.handleEditToDo = this.handleEditToDo.bind(this);
+    this.handleDeleteToDo = this.handleDeleteToDo.bind(this);
     this.handleSelectToDo = this.handleSelectToDo.bind(this);
   }
 
@@ -31,7 +32,6 @@ class ToDoApp extends React.Component {
   }
 
   handleEditToDo(targetToDo) {
-    console.log(targetToDo);
     const updatedToDoItems = this.state.todoItems.map((todo) => {
       return todo.id === targetToDo.id ? targetToDo : todo;
     });
@@ -41,6 +41,15 @@ class ToDoApp extends React.Component {
 
   handleSelectToDo(targetToDo) {
     this.setState({ selectedTodo: targetToDo });
+  }
+
+  handleDeleteToDo() {
+    console.log(this.state.selectedTodo);
+    const updatedToDoItems = this.state.todoItems.filter(
+      (todo) => todo.id !== this.state.selectedTodo.id
+    );
+    this.setState({ todoItems: updatedToDoItems });
+    localStorage.setItem("todoItems", JSON.stringify(updatedToDoItems));
   }
 
   render() {
@@ -70,6 +79,7 @@ class ToDoApp extends React.Component {
           <EditingBoard
             onAddNewToDo={this.handleAddNewToDo}
             onEditToDo={this.handleEditToDo}
+            onDeleteToDo={this.handleDeleteToDo}
             todoItems={this.state.todoItems}
             maxId={this.state.maxId}
             onSelectTodo={this.handleSelectToDo}
