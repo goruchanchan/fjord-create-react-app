@@ -8,7 +8,10 @@ class ToDoBoard extends React.Component {
       <div className="ToDoBoard">
         <h1>一覧</h1>
         <div className="Board">
-          <ToDoTable todos={this.props.todos}/>
+          <ToDoTable
+            todos={this.props.todos}
+            onSelectTodo={this.props.onSelectTodo}
+          />
         </div>
       </div>
     );

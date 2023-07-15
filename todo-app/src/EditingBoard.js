@@ -6,20 +6,30 @@ import AddToDo from "./AddToDo";
 
 class EditingBoard extends React.Component {
   render() {
+    const isEdit = true;
     return (
       <div className="EditingBoard">
         <h1>編集</h1>
         <div className="Board">
           <div className="Wrapper">
             <section className="Left">
-              <ToDoTable todos={this.props.todoItems} />
+              <ToDoTable
+                todos={this.props.todoItems}
+                onSelectTodo={this.props.onSelectTodo}
+              />
             </section>
             <section className="Right">
-              {/* <EditToDo todo={this.props.todos[0]}/> */}
-              <AddToDo
-                onAddNewToDo={this.props.onAddNewToDo}
-                maxId={this.props.maxId}
-              />
+              {isEdit ? (
+                <EditToDo
+                  todo={this.props.selectedTodo}
+                  onEditToDo={this.props.onEditToDo}
+                />
+              ) : (
+                <AddToDo
+                  onAddNewToDo={this.props.onAddNewToDo}
+                  maxId={this.props.maxId}
+                />
+              )}
             </section>
           </div>
         </div>

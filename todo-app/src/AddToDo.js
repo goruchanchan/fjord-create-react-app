@@ -36,12 +36,18 @@ class AddToDo extends React.Component {
     return (
       <div className="add-to-do">
         <form onSubmit={this.handleSubmit}>
-          <input
-            type="textarea"
-            value={this.state.todo}
-            onChange={this.handleChange}
-          />
-          <input type="submit" value="追加" />
+          <div className="WrapperEdit">
+            <section className="Top">
+              <textarea
+                type="text"
+                value={this.state.todo}
+                onChange={this.handleChange}
+              />
+            </section>
+            <section className="Down">
+              <input type="submit" value="追加" />
+            </section>
+          </div>
         </form>
         {this.state.noInput ? <ErrorText /> : ""}
       </div>

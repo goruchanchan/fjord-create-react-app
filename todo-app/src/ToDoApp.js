@@ -9,14 +9,17 @@ class ToDoApp extends React.Component {
     const tempLocalStorageToDoItems = localStorage.getItem("todoItems");
 
     if (tempLocalStorageToDoItems === null) {
-      this.state = { todoItems: [], maxId: 0 };
+      this.state = { todoItems: [], maxId: 0, selectedTodo: null };
     } else {
       this.state = {
         todoItems: JSON.parse(tempLocalStorageToDoItems),
         maxId: Number(localStorage.getItem("maxId")),
+        selectedTodo: JSON.parse(tempLocalStorageToDoItems),
       };
     }
     this.handleAddNewToDo = this.handleAddNewToDo.bind(this);
+    this.handleEditToDo = this.handleEditToDo.bind(this);
+    this.handleSelectToDo = this.handleSelectToDo.bind(this);
   }
 
   handleAddNewToDo(newToDo) {
@@ -25,6 +28,19 @@ class ToDoApp extends React.Component {
     this.setState({ todoItems, maxId });
     localStorage.setItem("todoItems", JSON.stringify(todoItems));
     localStorage.setItem("maxId", maxId);
+  }
+
+  handleEditToDo(targetToDo) {
+    console.log(targetToDo);
+    const updatedToDoItems = this.state.todoItems.map((todo) => {
+      return todo.id === targetToDo.id ? targetToDo : todo;
+    });
+    this.setState({ todoItems: updatedToDoItems });
+    localStorage.setItem("todoItems", JSON.stringify(updatedToDoItems));
+  }
+
+  handleSelectToDo(targetToDo) {
+    this.setState({ selectedTodo: targetToDo });
   }
 
   render() {
@@ -45,13 +61,19 @@ class ToDoApp extends React.Component {
           </a> */}
         </header>
         <div className="Contents">
-          <ToDoBoard todos={this.state.todoItems} />
+          <ToDoBoard
+            todos={this.state.todoItems}
+            onSelectTodo={this.handleSelectToDo}
+          />
         </div>
         <div className="Contents">
           <EditingBoard
             onAddNewToDo={this.handleAddNewToDo}
+            onEditToDo={this.handleEditToDo}
             todoItems={this.state.todoItems}
             maxId={this.state.maxId}
+            onSelectTodo={this.handleSelectToDo}
+            selectedTodo={this.state.selectedTodo}
           />
         </div>
       </div>
