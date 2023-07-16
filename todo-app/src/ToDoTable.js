@@ -22,6 +22,11 @@ class ToDoTable extends React.Component {
               </a>
             </li>
           ))}
+          <li>
+            <a href="#" onClick={() => this.props.onUnSelectTodo()}>
+              +
+            </a>
+          </li>
         </ul>
       </div>
     );

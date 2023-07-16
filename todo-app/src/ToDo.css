@@ -161,3 +161,8 @@ button {
 .Right {
   width: 40%;
 }
+
+.error {
+  font-size: 20px;
+  color: red;
+}

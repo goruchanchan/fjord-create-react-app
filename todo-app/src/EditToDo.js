@@ -1,10 +1,11 @@
 import React from "react";
 import "./ToDo.css";
+import ErrorText from "./ErrorText";
 
 class EditToDo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { todo: null, isEditing: false };
+    this.state = { todo: this.props.todo};
     this.handleEditInputChange = this.handleEditInputChange.bind(this);
     this.handleEditButton = this.handleEditButton.bind(this);
     this.handleDeleteButton = this.handleDeleteButton.bind(this);
@@ -27,12 +28,12 @@ class EditToDo extends React.Component {
   }
 
   handleEditButton() {
-    if (this.state.todo.text === "") return;
+    if (this.state.todo === null || this.state.todo.text === "") return;
     this.props.onEditToDo(this.state.todo);
   }
 
   handleDeleteButton() {
-    this.setState({ todo: null });
+    if (this.state.todo === null) return;
     this.props.onDeleteToDo();
   }
 
@@ -47,9 +48,10 @@ class EditToDo extends React.Component {
             ></textarea>
           </section>
           <section className="Down">
-            <button onClick={this.handleEditButton}>確定</button>
+            <button onClick={this.handleEditButton}>編集</button>
             <button onClick={this.handleDeleteButton}>削除</button>
           </section>
+          {this.state.todo.text ==="" ? <ErrorText /> : ""}
         </div>
       </div>
     );

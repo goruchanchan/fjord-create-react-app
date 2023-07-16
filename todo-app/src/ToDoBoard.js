@@ -11,6 +11,7 @@ class ToDoBoard extends React.Component {
           <ToDoTable
             todos={this.props.todos}
             onSelectTodo={this.props.onSelectTodo}
+            onUnSelectTodo={this.props.onUnSelectTodo}
           />
         </div>
       </div>

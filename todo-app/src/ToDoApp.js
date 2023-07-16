@@ -21,6 +21,7 @@ class ToDoApp extends React.Component {
     this.handleEditToDo = this.handleEditToDo.bind(this);
     this.handleDeleteToDo = this.handleDeleteToDo.bind(this);
     this.handleSelectToDo = this.handleSelectToDo.bind(this);
+    this.handleUnSelectToDo = this.handleUnSelectToDo.bind(this);
   }
 
   handleAddNewToDo(newToDo) {
@@ -43,6 +44,10 @@ class ToDoApp extends React.Component {
     this.setState({ selectedTodo: targetToDo });
   }
 
+  handleUnSelectToDo() {
+    this.setState({ selectedTodo: null });
+  }
+
   handleDeleteToDo() {
     const updatedToDoItems = this.state.todoItems.filter(
       (todo) => todo.id !== this.state.selectedTodo.id
@@ -55,26 +60,14 @@ class ToDoApp extends React.Component {
   render() {
     return (
       <div className="ToDoApp">
-        <header className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a> */}
-        </header>
         <div className="Contents">
           <ToDoBoard
             todos={this.state.todoItems}
             onSelectTodo={this.handleSelectToDo}
+            onUnSelectTodo={this.handleUnSelectToDo}
           />
         </div>
+
         <div className="Contents">
           <EditingBoard
             onAddNewToDo={this.handleAddNewToDo}
@@ -84,6 +77,7 @@ class ToDoApp extends React.Component {
             maxId={this.state.maxId}
             onSelectTodo={this.handleSelectToDo}
             selectedTodo={this.state.selectedTodo}
+            onUnSelectTodo={this.handleUnSelectToDo}
           />
         </div>
       </div>

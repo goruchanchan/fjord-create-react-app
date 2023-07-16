@@ -6,7 +6,6 @@ import AddToDo from "./AddToDo";
 
 class EditingBoard extends React.Component {
   render() {
-    const isEdit = true;
     return (
       <div className="EditingBoard">
         <h1>編集</h1>
@@ -16,10 +15,11 @@ class EditingBoard extends React.Component {
               <ToDoTable
                 todos={this.props.todoItems}
                 onSelectTodo={this.props.onSelectTodo}
+                onUnSelectTodo={this.props.onUnSelectTodo}
               />
             </section>
             <section className="Right">
-              {isEdit ? (
+              {this.props.selectedTodo ? (
                 <EditToDo
                   todo={this.props.selectedTodo}
                   onEditToDo={this.props.onEditToDo}
