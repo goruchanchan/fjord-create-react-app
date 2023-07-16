@@ -4,13 +4,25 @@ import "./ToDo.css";
 class EditToDo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { todo: props.todo, isEditing: false };
+    this.state = { todo: null, isEditing: false };
     this.handleEditInputChange = this.handleEditInputChange.bind(this);
     this.handleEditButton = this.handleEditButton.bind(this);
+    this.handleDeleteButton = this.handleDeleteButton.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.todo !== this.props.todo) {
+      this.setState({
+        todo: this.props.todo,
+      });
+    }
   }
 
   handleEditInputChange(event) {
-    const tempToDo = { id: this.props.todo.id, text: event.target.value };
+    const tempToDo = {
+      id: this.props.todo.id,
+      text: event.target.value,
+    };
     this.setState({ todo: tempToDo });
   }
 
@@ -19,19 +31,24 @@ class EditToDo extends React.Component {
     this.props.onEditToDo(this.state.todo);
   }
 
+  handleDeleteButton() {
+    this.setState({ todo: null });
+    this.props.onDeleteToDo();
+  }
+
   render() {
     return (
       <div className="App">
         <div className="WrapperEdit">
           <section className="Top">
             <textarea
-              defaultValue={this.props.todo.text}
+              value={this.state.todo !== null ? this.state.todo.text : ""}
               onChange={(event) => this.handleEditInputChange(event)}
             ></textarea>
           </section>
           <section className="Down">
             <button onClick={this.handleEditButton}>確定</button>
-            <button onClick={this.props.onDeleteToDo}>削除</button>
+            <button onClick={this.handleDeleteButton}>削除</button>
           </section>
         </div>
       </div>

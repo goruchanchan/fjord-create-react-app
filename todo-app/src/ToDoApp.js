@@ -14,7 +14,7 @@ class ToDoApp extends React.Component {
       this.state = {
         todoItems: JSON.parse(tempLocalStorageToDoItems),
         maxId: Number(localStorage.getItem("maxId")),
-        selectedTodo: JSON.parse(tempLocalStorageToDoItems),
+        selectedTodo: null,
       };
     }
     this.handleAddNewToDo = this.handleAddNewToDo.bind(this);
@@ -44,11 +44,11 @@ class ToDoApp extends React.Component {
   }
 
   handleDeleteToDo() {
-    console.log(this.state.selectedTodo);
     const updatedToDoItems = this.state.todoItems.filter(
       (todo) => todo.id !== this.state.selectedTodo.id
     );
     this.setState({ todoItems: updatedToDoItems });
+    this.setState({ selectedTodo: null });
     localStorage.setItem("todoItems", JSON.stringify(updatedToDoItems));
   }
 
