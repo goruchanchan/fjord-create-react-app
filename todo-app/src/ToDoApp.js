@@ -14,7 +14,7 @@ class ToDoApp extends React.Component {
       this.state = {
         todoItems: JSON.parse(tempLocalStorageToDoItems),
         maxId: Number(localStorage.getItem("maxId")),
-        selectedTodo: null,
+        selectedTodo: { id: null, text: "" },
       };
     }
     this.handleAddNewToDo = this.handleAddNewToDo.bind(this);
@@ -28,6 +28,7 @@ class ToDoApp extends React.Component {
     const todoItems = [...this.state.todoItems, newToDo];
     const maxId = Number(newToDo.id) + 1;
     this.setState({ todoItems, maxId });
+    this.setState({ selectedTodo: { id: null, text: "" } });
     localStorage.setItem("todoItems", JSON.stringify(todoItems));
     localStorage.setItem("maxId", maxId);
   }
@@ -37,6 +38,7 @@ class ToDoApp extends React.Component {
       return todo.id === targetToDo.id ? targetToDo : todo;
     });
     this.setState({ todoItems: updatedToDoItems });
+    this.setState({ selectedTodo: { id: null, text: "" } });
     localStorage.setItem("todoItems", JSON.stringify(updatedToDoItems));
   }
 
@@ -45,7 +47,7 @@ class ToDoApp extends React.Component {
   }
 
   handleUnSelectToDo() {
-    this.setState({ selectedTodo: null });
+    this.setState({ selectedTodo: { id: null, text: "+" } });
   }
 
   handleDeleteToDo() {
@@ -53,21 +55,13 @@ class ToDoApp extends React.Component {
       (todo) => todo.id !== this.state.selectedTodo.id
     );
     this.setState({ todoItems: updatedToDoItems });
-    this.setState({ selectedTodo: null });
+    this.setState({ selectedTodo: { id: null, text: "" } });
     localStorage.setItem("todoItems", JSON.stringify(updatedToDoItems));
   }
 
   render() {
     return (
       <div className="ToDoApp">
-        <div className="Contents">
-          <ToDoBoard
-            todos={this.state.todoItems}
-            onSelectTodo={this.handleSelectToDo}
-            onUnSelectTodo={this.handleUnSelectToDo}
-          />
-        </div>
-
         <div className="Contents">
           <EditingBoard
             onAddNewToDo={this.handleAddNewToDo}

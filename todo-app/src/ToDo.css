@@ -120,9 +120,8 @@ ul{
 }
 
 li {
-  text-decoration: underline;
   padding: 3px;
-  color: blue;
+  color: black;
 }
 
 textarea {
