@@ -13,15 +13,17 @@ class ToDoTable extends React.Component {
         <ul>
           {this.props.todos.map((todo) =>
             todo.id !== this.props.selectedTodo.id ? (
-              <li key={todo.id}>
-                <a
-                  href="#"
-                  onClick={() => this.handleClick(todo)}
-                  className={todo.completed ? "completed" : ""}
-                >
-                  {echoFirstLine(todo.text)}
-                </a>
-              </li>
+              <div className="underline">
+                <li key={todo.id}>
+                  <a
+                    href="#"
+                    onClick={() => this.handleClick(todo)}
+                    className={todo.completed ? "completed" : ""}
+                  >
+                    {echoFirstLine(todo.text)}
+                  </a>
+                </li>
+              </div>
             ) : (
               <li key={todo.id}>{echoFirstLine(todo.text)}</li>
             )
