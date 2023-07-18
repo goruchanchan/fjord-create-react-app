@@ -1,5 +1,4 @@
 import React from "react";
-import ToDoBoard from "./ToDoBoard";
 import EditingBoard from "./EditingBoard";
 import "./ToDo.css";
 
