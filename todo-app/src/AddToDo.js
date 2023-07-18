@@ -1,5 +1,5 @@
 import React from "react";
-import ErrorText from "./ErrorText";
+import { echoErrorNoInput } from "./ToDoUtils";
 
 class AddToDo extends React.Component {
   constructor(props) {
@@ -49,7 +49,7 @@ class AddToDo extends React.Component {
             </section>
           </div>
         </form>
-        {this.state.noInput ? <ErrorText /> : ""}
+        {this.state.noInput ? echoErrorNoInput() : ""}
       </div>
     );
   }

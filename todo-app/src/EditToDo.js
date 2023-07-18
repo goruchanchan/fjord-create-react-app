@@ -1,6 +1,6 @@
 import React from "react";
 import "./ToDo.css";
-import ErrorText from "./ErrorText";
+import { echoErrorNoInput } from "./ToDoUtils";
 
 class EditToDo extends React.Component {
   constructor(props) {
@@ -51,7 +51,7 @@ class EditToDo extends React.Component {
             <button onClick={this.handleEditButton}>編集</button>
             <button onClick={this.handleDeleteButton}>削除</button>
           </section>
-          {this.state.todo.text ==="" ? <ErrorText /> : ""}
+          {this.state.todo.text ==="" ? echoErrorNoInput() : ""}
         </div>
       </div>
     );
