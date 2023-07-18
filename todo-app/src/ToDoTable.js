@@ -13,8 +13,8 @@ class ToDoTable extends React.Component {
         <ul>
           {this.props.todos.map((todo) =>
             todo.id !== this.props.selectedTodo.id ? (
-              <div className="underline">
-                <li key={todo.id}>
+              <li key={todo.id}>
+                <div className="underline">
                   <a
                     href="#"
                     onClick={() => this.handleClick(todo)}
@@ -22,8 +22,8 @@ class ToDoTable extends React.Component {
                   >
                     {echoFirstLine(todo.text)}
                   </a>
-                </li>
-              </div>
+                </div>
+              </li>
             ) : (
               <li key={todo.id}>{echoFirstLine(todo.text)}</li>
             )

@@ -1,5 +1,5 @@
 import React from "react";
-import EditingBoard from "./EditingBoard";
+import TodoBoard from "./ToDoBoard";
 import "./ToDo.css";
 
 class ToDoApp extends React.Component {
@@ -8,7 +8,7 @@ class ToDoApp extends React.Component {
     const tempLocalStorageToDoItems = localStorage.getItem("todoItems");
 
     if (tempLocalStorageToDoItems === null) {
-      this.state = { todoItems: [], maxId: 0, selectedTodo: null };
+      this.state = { todoItems: [], maxId: 0, selectedTodo: { id: null, text: "" } };
     } else {
       this.state = {
         todoItems: JSON.parse(tempLocalStorageToDoItems),
@@ -62,7 +62,7 @@ class ToDoApp extends React.Component {
     return (
       <div className="ToDoApp">
         <div className="Contents">
-          <EditingBoard
+          <TodoBoard
             onAddNewToDo={this.handleAddNewToDo}
             onEditToDo={this.handleEditToDo}
             onDeleteToDo={this.handleDeleteToDo}
