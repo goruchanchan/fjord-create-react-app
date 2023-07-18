@@ -8,7 +8,11 @@ class ToDoApp extends React.Component {
     const tempLocalStorageToDoItems = localStorage.getItem("todoItems");
 
     if (tempLocalStorageToDoItems === null) {
-      this.state = { todoItems: [], maxId: 0, selectedTodo: { id: null, text: "" } };
+      this.state = {
+        todoItems: [],
+        maxId: 0,
+        selectedTodo: { id: null, text: "" },
+      };
     } else {
       this.state = {
         todoItems: JSON.parse(tempLocalStorageToDoItems),
@@ -51,7 +55,7 @@ class ToDoApp extends React.Component {
 
   handleDeleteToDo() {
     const updatedToDoItems = this.state.todoItems.filter(
-      (todo) => todo.id !== this.state.selectedTodo.id
+      (todo) => todo.id !== this.state.selectedTodo.id,
     );
     this.setState({ todoItems: updatedToDoItems });
     this.setState({ selectedTodo: { id: null, text: "" } });

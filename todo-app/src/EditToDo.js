@@ -5,7 +5,7 @@ import { echoErrorNoInput } from "./ToDoUtils";
 class EditToDo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { todo: this.props.todo};
+    this.state = { todo: this.props.todo };
     this.handleEditInputChange = this.handleEditInputChange.bind(this);
     this.handleEditButton = this.handleEditButton.bind(this);
     this.handleDeleteButton = this.handleDeleteButton.bind(this);
@@ -51,7 +51,7 @@ class EditToDo extends React.Component {
             <button onClick={this.handleEditButton}>編集</button>
             <button onClick={this.handleDeleteButton}>削除</button>
           </section>
-          {this.state.todo.text ==="" ? echoErrorNoInput() : ""}
+          {this.state.todo.text === "" ? echoErrorNoInput() : ""}
         </div>
       </div>
     );
