@@ -165,6 +165,15 @@ textarea {
   font-family: inherit;
 }
 
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  appearance: none;
+}
+
 /*
 ////////////////////////////////////////
 初期設定
@@ -208,10 +217,6 @@ li {
   color: black;
 }
 
-.underline {
-  text-decoration: underline;
-}
-
 textarea {
   width: 150px;
   border-radius: 5px;
@@ -220,8 +225,20 @@ textarea {
   padding-left: 2px;
 }
 
-button {
-  border-radius: 5px;
+.Underline {
+  text-decoration: underline;
+}
+
+.UniqueLink {
+  color: blue;
+}
+
+.UniqueButton {
+  background-color: rgb(225, 225, 225);
+  border: 1px solid rgb(161, 161, 161);
+  padding: 3px;
+  border-radius: 2px;
+  margin: 0px 12px 0px 0px;
 }
 
 .Board {

@@ -14,24 +14,27 @@ class ToDoTable extends React.Component {
           {this.props.todos.map((todo) =>
             todo.id !== this.props.selectedTodo.id ? (
               <li key={todo.id}>
-                <div className="underline">
-                  <a
-                    href="#"
-                    onClick={() => this.handleClick(todo)}
-                    className={todo.completed ? "completed" : ""}
-                  >
-                    {echoFirstLine(todo.text)}
-                  </a>
-                </div>
+                <button
+                  href="#"
+                  onClick={() => this.handleClick(todo)}
+                  className={todo.completed ? "completed" : ""}
+                >
+                  <div className="Underline">
+                    <div className="UniqueLink">
+                      {" "}
+                      {echoFirstLine(todo.text)}
+                    </div>{" "}
+                  </div>
+                </button>
               </li>
             ) : (
               <li key={todo.id}>{echoFirstLine(todo.text)}</li>
             ),
           )}
           <li>
-            <a href="#" onClick={() => this.props.onUnSelectTodo()}>
-              +
-            </a>
+            <button onClick={() => this.props.onUnSelectTodo()}>
+              <div className="UniqueLink">+</div>
+            </button>
           </li>
         </ul>
       </div>

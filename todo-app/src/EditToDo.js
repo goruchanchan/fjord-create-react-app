@@ -48,8 +48,12 @@ class EditToDo extends React.Component {
             ></textarea>
           </section>
           <section className="Down">
-            <button onClick={this.handleEditButton}>編集</button>
-            <button onClick={this.handleDeleteButton}>削除</button>
+            <button onClick={this.handleEditButton}>
+              <div className="UniqueButton">編集</div>
+            </button>
+            <button onClick={this.handleDeleteButton}>
+              <div className="UniqueButton">削除</div>
+            </button>
           </section>
           {this.state.todo.text === "" ? echoErrorNoInput() : ""}
         </div>
