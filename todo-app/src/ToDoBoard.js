@@ -6,14 +6,17 @@ import AddToDo from "./AddToDo";
 
 class TodoBoard extends React.Component {
   render() {
+    let title = "一覧";
+    if (
+      this.props.selectedTodo.id !== null ||
+      this.props.selectedTodo.text !== ""
+    ) {
+      title = "編集";
+    }
+
     return (
       <div className="EditingBoard">
-        <h1>
-          {this.props.selectedTodo.id === null &&
-          this.props.selectedTodo.text === ""
-            ? "一覧"
-            : "編集"}
-        </h1>
+        <h1> {title} </h1>
         <div className="Board">
           <div className="Wrapper">
             <section className="Left">

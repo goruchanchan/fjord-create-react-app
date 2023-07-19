@@ -34,7 +34,7 @@ class AddToDo extends React.Component {
 
   render() {
     return (
-      <div className="add-to-do">
+      <div className="AddToDo">
         <form onSubmit={this.handleSubmit}>
           <div className="WrapperEdit">
             <section className="Top">

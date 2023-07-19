@@ -37,16 +37,16 @@ class ToDoApp extends React.Component {
   }
 
   handleEditToDo(targetToDo) {
-    const updatedToDoItems = this.state.todoItems.map((todo) => {
+    const todoItems = this.state.todoItems.map((todo) => {
       return todo.id === targetToDo.id ? targetToDo : todo;
     });
-    this.setState({ todoItems: updatedToDoItems });
+    this.setState({ todoItems });
     this.setState({ selectedTodo: { id: null, text: "" } });
-    localStorage.setItem("todoItems", JSON.stringify(updatedToDoItems));
+    localStorage.setItem("todoItems", JSON.stringify(todoItems));
   }
 
-  handleSelectToDo(targetToDo) {
-    this.setState({ selectedTodo: targetToDo });
+  handleSelectToDo(selectedTodo) {
+    this.setState({ selectedTodo });
   }
 
   handleUnSelectToDo() {
@@ -64,7 +64,6 @@ class ToDoApp extends React.Component {
 
   render() {
     return (
-      <div className="ToDoApp">
         <div className="Contents">
           <TodoBoard
             onAddNewToDo={this.handleAddNewToDo}
@@ -76,7 +75,6 @@ class ToDoApp extends React.Component {
             selectedTodo={this.state.selectedTodo}
             onUnSelectTodo={this.handleUnSelectToDo}
           />
-        </div>
       </div>
     );
   }

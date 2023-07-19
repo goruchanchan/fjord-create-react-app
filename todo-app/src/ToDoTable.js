@@ -15,25 +15,22 @@ class ToDoTable extends React.Component {
             todo.id !== this.props.selectedTodo.id ? (
               <li key={todo.id}>
                 <button
-                  href="#"
+                  className="UniqueLink"
                   onClick={() => this.handleClick(todo)}
-                  className={todo.completed ? "completed" : ""}
                 >
-                  <div className="Underline">
-                    <div className="UniqueLink">
-                      {" "}
-                      {echoFirstLine(todo.text)}
-                    </div>{" "}
-                  </div>
+                  <div className="Underline">{echoFirstLine(todo.text)}</div>
                 </button>
               </li>
             ) : (
               <li key={todo.id}>{echoFirstLine(todo.text)}</li>
-            ),
+            )
           )}
           <li>
-            <button onClick={() => this.props.onUnSelectTodo()}>
-              <div className="UniqueLink">+</div>
+            <button
+              className="UniqueLink"
+              onClick={() => this.props.onUnSelectTodo()}
+            >
+              +
             </button>
           </li>
         </ul>
