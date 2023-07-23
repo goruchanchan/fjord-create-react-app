@@ -21,7 +21,7 @@ class TodoBoard extends React.Component {
           <div className="Wrapper">
             <section className="Left">
               <ToDoTable
-                todos={this.props.todoItems}
+                todos={this.props.todos}
                 selectedTodo={this.props.selectedTodo}
                 onSelectTodo={this.props.onSelectTodo}
                 onUnSelectTodo={this.props.onUnSelectTodo}

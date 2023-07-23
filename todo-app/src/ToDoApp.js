@@ -5,17 +5,17 @@ import "./ToDo.css";
 class ToDoApp extends React.Component {
   constructor(props) {
     super(props);
-    const tempLocalStorageToDoItems = localStorage.getItem("todoItems");
+    const tempLocalStorageToDos = localStorage.getItem("todos");
 
-    if (tempLocalStorageToDoItems === null) {
+    if (tempLocalStorageToDos === null) {
       this.state = {
-        todoItems: [],
+        todos: [],
         maxId: 0,
         selectedTodo: { id: null, text: "" },
       };
     } else {
       this.state = {
-        todoItems: JSON.parse(tempLocalStorageToDoItems),
+        todos: JSON.parse(tempLocalStorageToDos),
         maxId: Number(localStorage.getItem("maxId")),
         selectedTodo: { id: null, text: "" },
       };
@@ -28,21 +28,21 @@ class ToDoApp extends React.Component {
   }
 
   handleAddNewToDo(newToDo) {
-    const todoItems = [...this.state.todoItems, newToDo];
+    const todos = [...this.state.todos, newToDo];
     const maxId = Number(newToDo.id) + 1;
-    this.setState({ todoItems, maxId });
+    this.setState({ todos, maxId });
     this.setState({ selectedTodo: { id: null, text: "" } });
-    localStorage.setItem("todoItems", JSON.stringify(todoItems));
+    localStorage.setItem("todos", JSON.stringify(todos));
     localStorage.setItem("maxId", maxId);
   }
 
   handleEditToDo(targetToDo) {
-    const todoItems = this.state.todoItems.map((todo) => {
+    const todos = this.state.todos.map((todo) => {
       return todo.id === targetToDo.id ? targetToDo : todo;
     });
-    this.setState({ todoItems });
+    this.setState({ todos });
     this.setState({ selectedTodo: { id: null, text: "" } });
-    localStorage.setItem("todoItems", JSON.stringify(todoItems));
+    localStorage.setItem("todos", JSON.stringify(todos));
   }
 
   handleSelectToDo(selectedTodo) {
@@ -54,12 +54,12 @@ class ToDoApp extends React.Component {
   }
 
   handleDeleteToDo() {
-    const updatedToDoItems = this.state.todoItems.filter(
+    const todos = this.state.todos.filter(
       (todo) => todo.id !== this.state.selectedTodo.id,
     );
-    this.setState({ todoItems: updatedToDoItems });
+    this.setState({ todos });
     this.setState({ selectedTodo: { id: null, text: "" } });
-    localStorage.setItem("todoItems", JSON.stringify(updatedToDoItems));
+    localStorage.setItem("todos", JSON.stringify(todos));
   }
 
   render() {
@@ -69,7 +69,7 @@ class ToDoApp extends React.Component {
             onAddNewToDo={this.handleAddNewToDo}
             onEditToDo={this.handleEditToDo}
             onDeleteToDo={this.handleDeleteToDo}
-            todoItems={this.state.todoItems}
+            todos={this.state.todos}
             maxId={this.state.maxId}
             onSelectTodo={this.handleSelectToDo}
             selectedTodo={this.state.selectedTodo}
