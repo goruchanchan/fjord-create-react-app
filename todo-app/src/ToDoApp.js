@@ -59,7 +59,7 @@ class ToDoApp extends React.Component {
 
   handleDeleteToDo() {
     const todos = this.state.todos.filter(
-      (todo) => todo.id !== this.state.selectedTodo.id
+      (todo) => todo.id !== this.state.selectedTodo.id,
     );
     this.updateToDos(todos, this.state.maxId);
   }

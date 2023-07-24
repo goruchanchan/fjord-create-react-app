@@ -23,7 +23,7 @@ class ToDoTable extends React.Component {
               </li>
             ) : (
               <li key={todo.id}>{echoFirstLine(todo.text)}</li>
-            )
+            ),
           )}
           <li>
             <button
