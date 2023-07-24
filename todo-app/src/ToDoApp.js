@@ -5,26 +5,29 @@ import "./ToDo.css";
 class ToDoApp extends React.Component {
   constructor(props) {
     super(props);
-    const tempLocalStorageToDos = localStorage.getItem("todos");
 
-    if (tempLocalStorageToDos === null) {
-      this.state = {
-        todos: [],
-        maxId: 0,
-        selectedTodo: { id: null, text: "" },
-      };
-    } else {
-      this.state = {
-        todos: JSON.parse(tempLocalStorageToDos),
-        maxId: Number(localStorage.getItem("maxId")),
-        selectedTodo: { id: null, text: "" },
-      };
-    }
+    this.state = {
+      todos: [],
+      maxId: 0,
+      selectedTodo: { id: null, text: "" },
+    };
+
     this.handleAddNewToDo = this.handleAddNewToDo.bind(this);
     this.handleEditToDo = this.handleEditToDo.bind(this);
     this.handleDeleteToDo = this.handleDeleteToDo.bind(this);
     this.handleSelectToDo = this.handleSelectToDo.bind(this);
     this.handleUnSelectToDo = this.handleUnSelectToDo.bind(this);
+  }
+
+  componentDidMount() {
+    const tempLocalStorageToDos = localStorage.getItem("todos");
+    if (tempLocalStorageToDos !== null) {
+      this.setState({
+        todos: JSON.parse(tempLocalStorageToDos),
+        maxId: Number(localStorage.getItem("maxId")),
+        selectedTodo: { id: null, text: "" },
+      });
+    }
   }
 
   updateToDos(todos, maxId) {
