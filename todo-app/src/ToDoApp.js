@@ -27,22 +27,23 @@ class ToDoApp extends React.Component {
     this.handleUnSelectToDo = this.handleUnSelectToDo.bind(this);
   }
 
+  updateToDos(todos, maxId) {
+    this.setState({ todos, maxId, selectedTodo: { id: null, text: "" } });
+    localStorage.setItem("todos", JSON.stringify(todos));
+    localStorage.setItem("maxId", maxId);
+  }
+
   handleAddNewToDo(newToDo) {
     const todos = [...this.state.todos, newToDo];
     const maxId = Number(newToDo.id) + 1;
-    this.setState({ todos, maxId });
-    this.setState({ selectedTodo: { id: null, text: "" } });
-    localStorage.setItem("todos", JSON.stringify(todos));
-    localStorage.setItem("maxId", maxId);
+    this.updateToDos(todos, maxId);
   }
 
   handleEditToDo(targetToDo) {
     const todos = this.state.todos.map((todo) => {
       return todo.id === targetToDo.id ? targetToDo : todo;
     });
-    this.setState({ todos });
-    this.setState({ selectedTodo: { id: null, text: "" } });
-    localStorage.setItem("todos", JSON.stringify(todos));
+    this.updateToDos(todos, this.state.maxId);
   }
 
   handleSelectToDo(selectedTodo) {
@@ -55,26 +56,24 @@ class ToDoApp extends React.Component {
 
   handleDeleteToDo() {
     const todos = this.state.todos.filter(
-      (todo) => todo.id !== this.state.selectedTodo.id,
+      (todo) => todo.id !== this.state.selectedTodo.id
     );
-    this.setState({ todos });
-    this.setState({ selectedTodo: { id: null, text: "" } });
-    localStorage.setItem("todos", JSON.stringify(todos));
+    this.updateToDos(todos, this.state.maxId);
   }
 
   render() {
     return (
-        <div className="Contents">
-          <TodoBoard
-            onAddNewToDo={this.handleAddNewToDo}
-            onEditToDo={this.handleEditToDo}
-            onDeleteToDo={this.handleDeleteToDo}
-            todos={this.state.todos}
-            maxId={this.state.maxId}
-            onSelectTodo={this.handleSelectToDo}
-            selectedTodo={this.state.selectedTodo}
-            onUnSelectTodo={this.handleUnSelectToDo}
-          />
+      <div className="Contents">
+        <TodoBoard
+          onAddNewToDo={this.handleAddNewToDo}
+          onEditToDo={this.handleEditToDo}
+          onDeleteToDo={this.handleDeleteToDo}
+          todos={this.state.todos}
+          maxId={this.state.maxId}
+          onSelectTodo={this.handleSelectToDo}
+          selectedTodo={this.state.selectedTodo}
+          onUnSelectTodo={this.handleUnSelectToDo}
+        />
       </div>
     );
   }
