@@ -28,7 +28,7 @@ class ToDoTable extends React.Component {
           <li>
             <button
               className="UniqueLink"
-              onClick={() => this.props.onUnSelectTodo()}
+              onClick={() => this.props.onUnselectTodo()}
             >
               +
             </button>

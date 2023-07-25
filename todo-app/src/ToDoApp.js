@@ -16,7 +16,7 @@ class ToDoApp extends React.Component {
     this.handleEditToDo = this.handleEditToDo.bind(this);
     this.handleDeleteToDo = this.handleDeleteToDo.bind(this);
     this.handleSelectToDo = this.handleSelectToDo.bind(this);
-    this.handleUnSelectToDo = this.handleUnSelectToDo.bind(this);
+    this.handleUnselectToDo = this.handleUnselectToDo.bind(this);
   }
 
   componentDidMount() {
@@ -53,7 +53,7 @@ class ToDoApp extends React.Component {
     this.setState({ selectedTodo });
   }
 
-  handleUnSelectToDo() {
+  handleUnselectToDo() {
     this.setState({ selectedTodo: { id: null, text: "+" } });
   }
 
@@ -75,7 +75,7 @@ class ToDoApp extends React.Component {
           maxId={this.state.maxId}
           onSelectTodo={this.handleSelectToDo}
           selectedTodo={this.state.selectedTodo}
-          onUnSelectTodo={this.handleUnSelectToDo}
+          onUnselectTodo={this.handleUnselectToDo}
         />
       </div>
     );
